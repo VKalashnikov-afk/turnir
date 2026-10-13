@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f1f4fa">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a111f">
+<meta name="color-scheme" content="light dark">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Турнир">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAEmElEQVR42u3dMW4VMRCA4bB6PRQ0VIBETYUEFSfhBpwnN+AkVCBRUSMBN+AIFEgRCiF5Wa/tmfH3t5C3fuPfM7P7dtcPHj5+cgHcxCYEIAfIAXKAHCAHyAFygBwgB8gBkAPkADlADpAD5AA5QA6QA+QAyAFyYD+n2l/v5af35/y3r28uqfAvD4o91HSmDVxZSI5DnGBJKTk6OcGS3HIM02JlRfLJMUWLNRXJJMd0LVZTJIccobRYR5GNGVXHVl+O+NEv7EfcspIu6PVKzMYMKSRT5jg2yncu6MGHI8dkM3bPkJ9m4srRODcHzkqckZCjaT66zkTMUa0lR785uPOT+zUl2f0IIce+6N8S+h7Tefgg45P1TrAbg97eTl59wr+f//XNZe3roREzx30j3kmLfsfKmzwmy9Ee6AGruf2gSf3YmLFjnPed7KT1KM2jCbPMOMoPZaXXYro2ExMXYstI0vm0pcsZc1P0taO72Wdm2ghlRqMf6TqPTI9DxgnuIhc8tsiRzZK0qyaPLUvEo4V1heZjmxvT1Auu0nfJlDn+XohZ7j53D2msEm7kdeTYkQNKPpqQpbJ4sw/yyJGl21ih89imRBApoqGsIIkcGWtK4coic4AcCCuHbjRjTAJljrwNR9W2Q1kBOUAOkAPkADlADpAD5AA5QI4AZL/8nP3y/zQ57JqWMSbKCsiB7HLkbTvqNRwyB2LIoSdNF41wmSNjZSlZU5QVhJFjRyaInzxKfqm4mSNvZi52k32CPd4ir7Oq3cYcOfbNdEw/Kn2XZA1p8DeyBX+fXVY56r2Ysd7LM/OdysaJ7CIX9LbgwQ1YXHYXFC/GL958rNBqXDFzp6bG/SgGT0zjADJWojQ9x9ztcKaruZwc7ZthjfFj2T3e7A7Z/Vh2hxzqxwBFjvr82834+eP7//7p6bPn5Ng/qXl3pL7FiVCW2Mt+6F7299JiuiJR5OjqR5BR7TZjlh+B5GhvGg605NiRNGoxS5FYchzVVO62pMfRDzRjsB/h5Dj8vLRfSzHFjJF+RJTjIu31xzFmDPNjSxHljGYUIGjmyJVC2i9mxEwem+WY1IwBR9mSrktjU1bilphbtBiTNgYUl1O6jm+6Ius8EX5KN+I7Ffn47XPL57998ZoWWeWYkkXO12JwTflzxE6VJVPPcX47clTy2JEqxsvRr+04XZTgahbn/jSjrGSw5MMrU9uOl7dgMTkevfvS8ue/JB6ZA+QAOQ5FZaksR2PbsZvxtwH3O6LMAXKAHBHajpGVpeuxKssxq+2QOTA/eax+D2neE9reM7fuowlQVoq3Hf0W95iyJXN0rCydZnHY2RA5kuWPkefJJ5M3zI907+eonzniXO1omd0pb/ZRVrq3Hdfm+L7TvONPlJUKXUjwtwmSo06vqqzMaTvWvPdHzwFygBzxT2jJ4YSWHCAHyKHtUFlkDpAD5AA5tB3kADlAjoqsU1mWk8OPLOQAOVQWcoAc2g5ygBzaDnKgLEW21Bi59NdpWTzURAhycIIcnNBzHN92EELmkCRkDhyB6xwgB8gBcoAcIAfIAXKAHCAHyAGQA+fzG1Z+DlwHb0MWAAAAAElFTkSuQmCC">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAEmElEQVR42u3dMW4VMRCA4bB6PRQ0VIBETYUEFSfhBpwnN+AkVCBRUSMBN+AIFEgRCiF5Wa/tmfH3t5C3fuPfM7P7dtcPHj5+cgHcxCYEIAfIAXKAHCAHyAFygBwgB8gBkAPkADlADpAD5AA5QA6QA+QAyAFyYD+n2l/v5af35/y3r28uqfAvD4o91HSmDVxZSI5DnGBJKTk6OcGS3HIM02JlRfLJMUWLNRXJJMd0LVZTJIccobRYR5GNGVXHVl+O+NEv7EfcspIu6PVKzMYMKSRT5jg2yncu6MGHI8dkM3bPkJ9m4srRODcHzkqckZCjaT66zkTMUa0lR785uPOT+zUl2f0IIce+6N8S+h7Tefgg45P1TrAbg97eTl59wr+f//XNZe3roREzx30j3kmLfsfKmzwmy9Ee6AGruf2gSf3YmLFjnPed7KT1KM2jCbPMOMoPZaXXYro2ExMXYstI0vm0pcsZc1P0taO72Wdm2ghlRqMf6TqPTI9DxgnuIhc8tsiRzZK0qyaPLUvEo4V1heZjmxvT1Auu0nfJlDn+XohZ7j53D2msEm7kdeTYkQNKPpqQpbJ4sw/yyJGl21ih89imRBApoqGsIIkcGWtK4coic4AcCCuHbjRjTAJljrwNR9W2Q1kBOUAOkAPkADlADpAD5AA5QI4AZL/8nP3y/zQ57JqWMSbKCsiB7HLkbTvqNRwyB2LIoSdNF41wmSNjZSlZU5QVhJFjRyaInzxKfqm4mSNvZi52k32CPd4ir7Oq3cYcOfbNdEw/Kn2XZA1p8DeyBX+fXVY56r2Ysd7LM/OdysaJ7CIX9LbgwQ1YXHYXFC/GL958rNBqXDFzp6bG/SgGT0zjADJWojQ9x9ztcKaruZwc7ZthjfFj2T3e7A7Z/Vh2hxzqxwBFjvr82834+eP7//7p6bPn5Ng/qXl3pL7FiVCW2Mt+6F7299JiuiJR5OjqR5BR7TZjlh+B5GhvGg605NiRNGoxS5FYchzVVO62pMfRDzRjsB/h5Dj8vLRfSzHFjJF+RJTjIu31xzFmDPNjSxHljGYUIGjmyJVC2i9mxEwem+WY1IwBR9mSrktjU1bilphbtBiTNgYUl1O6jm+6Ius8EX5KN+I7Ffn47XPL57998ZoWWeWYkkXO12JwTflzxE6VJVPPcX47clTy2JEqxsvRr+04XZTgahbn/jSjrGSw5MMrU9uOl7dgMTkevfvS8ue/JB6ZA+QAOQ5FZaksR2PbsZvxtwH3O6LMAXKAHBHajpGVpeuxKssxq+2QOTA/eax+D2neE9reM7fuowlQVoq3Hf0W95iyJXN0rCydZnHY2RA5kuWPkefJJ5M3zI907+eonzniXO1omd0pb/ZRVrq3Hdfm+L7TvONPlJUKXUjwtwmSo06vqqzMaTvWvPdHzwFygBzxT2jJ4YSWHCAHyKHtUFlkDpAD5AA5tB3kADlAjoqsU1mWk8OPLOQAOVQWcoAc2g5ygBzaDnKgLEW21Bi59NdpWTzURAhycIIcnNBzHN92EELmkCRkDhyB6xwgB8gBcoAcIAfIAXKAHCAHyAGQA+fzG1Z+DlwHb0MWAAAAAElFTkSuQmCC">
+<title>Турнир по настольному теннису</title>
+<style>
+/* Макет: стол и мяч. Холодный синий цвет игрового стола как основной, оранжевый мяч для акцентов.
+   Карточка матча повторяет стол: два игрока по сторонам, пунктирная сетка по центру. */
+:root{
+  --bg:#f1f4fa;--bg-blur:rgba(241,244,250,.86);--surface:#ffffff;--surface2:#e8edf6;
+  --ink:#0d1a2d;--mut:#5a6b84;--line:#d9e1ee;
+  --primary:#1c4fd8;--on-primary:#ffffff;--primary-soft:#e2eaff;
+  --ball:#f26b0f;--on-ball:#2a1205;--ball-soft:#ffe8d6;
+  --good:#12864a;--good-line:#a7dcc0;--bad:#c2362f;--bad-soft:#fde3e1;
+  --nav-bg:rgba(255,255,255,.88);--shade:rgba(9,16,30,.5);
+  --shadow:0 1px 2px rgba(13,26,45,.05),0 8px 24px rgba(13,26,45,.07);--shadow-sm:0 1px 3px rgba(13,26,45,.14);
+  --r:20px;
+  color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0a111f;--bg-blur:rgba(10,17,31,.86);--surface:#121b2e;--surface2:#1b2740;
+  --ink:#e8eefb;--mut:#93a3bf;--line:#25334f;
+  --primary:#5b93ff;--on-primary:#06122b;--primary-soft:#1a2b52;
+  --ball:#ff9242;--on-ball:#1d0d03;--ball-soft:#3a2413;
+  --good:#4ade80;--good-line:#25613f;--bad:#ff7b72;--bad-soft:#3a1816;
+  --nav-bg:rgba(18,27,46,.88);--shade:rgba(0,0,0,.62);
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);--shadow-sm:0 1px 3px rgba(0,0,0,.5);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0a111f;--bg-blur:rgba(10,17,31,.86);--surface:#121b2e;--surface2:#1b2740;
+  --ink:#e8eefb;--mut:#93a3bf;--line:#25334f;
+  --primary:#5b93ff;--on-primary:#06122b;--primary-soft:#1a2b52;
+  --ball:#ff9242;--on-ball:#1d0d03;--ball-soft:#3a2413;
+  --good:#4ade80;--good-line:#25613f;--bad:#ff7b72;--bad-soft:#3a1816;
+  --nav-bg:rgba(18,27,46,.88);--shade:rgba(0,0,0,.62);
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);--shadow-sm:0 1px 3px rgba(0,0,0,.5);
+  color-scheme:dark}
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{padding-bottom:calc(104px + env(safe-area-inset-bottom,0px));touch-action:manipulation}
+input,button,textarea{font-family:inherit;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+h1,h2,h3{margin:0;letter-spacing:-.02em;text-wrap:balance}
+
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg-blur);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);padding:12px 16px 10px;border-bottom:1px solid var(--line)}
+.top-in{max-width:600px;margin:0 auto}
+.toprow{display:flex;align-items:center;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em}
+.ball{width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 34% 30%,#ffc194,var(--ball) 62%);box-shadow:inset -2px -3px 0 rgba(0,0,0,.14);flex:none}
+.meta{margin-left:auto;font-size:13px;font-weight:600;color:var(--mut);font-variant-numeric:tabular-nums}
+.bar{height:4px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;width:0;background:var(--primary);border-radius:4px;transition:width .3s}
+
+main{max-width:600px;margin:0 auto;padding-block:8px 16px;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px))}
+h2{font-size:22px;font-weight:800;margin:24px 0 4px}
+h2 small{font-size:13px;font-weight:600;color:var(--mut);letter-spacing:0;margin-left:6px}
+.sub{color:var(--mut);font-size:14px;margin:10px 2px}
+.hero h1{font-size:30px;font-weight:800;margin:18px 0 4px}
+.msg{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin:14px 0;color:var(--mut);box-shadow:var(--shadow)}
+.msg.warn{border-color:var(--ball);color:var(--ink);background:var(--ball-soft)}
+.banner{display:flex;align-items:center;gap:12px;background:var(--primary-soft);border:1px solid var(--primary);border-radius:var(--r);padding:12px 14px;margin:12px 0;font-weight:700}
+.banner svg{width:26px;height:26px;stroke:var(--ball);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.banner span{min-width:0;overflow-wrap:anywhere}
+
+/* кнопки и поля */
+.btns{display:flex;gap:10px;margin-top:12px}
+.btn{flex:1;min-width:0;height:48px;border-radius:14px;border:0;background:var(--surface2);color:var(--ink);font-size:16px;font-weight:700}
+.btn:active{opacity:.7}
+.btn.primary{background:var(--primary);color:var(--on-primary)}
+.btn.ghost{flex:0 0 auto;padding:0 18px}
+.btn.danger{background:var(--bad-soft);color:var(--bad)}
+.btn:disabled{opacity:.35}
+.err{color:var(--bad);font-size:13px;margin-top:10px;font-weight:600}
+.err:empty{display:none}
+input.txt,textarea{width:100%;font-size:16px;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px}
+input.txt:focus,textarea:focus{border-color:var(--primary)}
+input.txt{height:50px;display:block}
+textarea{min-height:92px;resize:vertical;word-break:break-all}
+.note{font-size:13px;color:var(--mut);margin:6px 2px}
+.ok-text{color:var(--good);font-size:14px;margin-top:8px;font-weight:600}
+
+/* настройки */
+.grp{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin:12px 0;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:14px}
+.grp h3{font-size:16px;font-weight:800}
+.grp .hint{font-size:13px;color:var(--mut);margin-top:-8px}
+.fld{display:flex;flex-direction:column;gap:8px}
+.fld>.lbl{font-size:13px;font-weight:700;color:var(--mut)}
+.seg{display:flex;gap:4px;background:var(--surface2);padding:4px;border-radius:14px}
+.segb{flex:1;min-width:0;height:42px;border:0;border-radius:10px;background:none;color:var(--mut);font-weight:700;font-size:14px;padding:0 4px;line-height:1.15}
+.segb.on{background:var(--surface);color:var(--ink);box-shadow:var(--shadow-sm)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{height:42px;padding:0 16px;border-radius:99px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font-weight:700;font-size:15px;font-variant-numeric:tabular-nums}
+.chip.on{background:var(--primary);border-color:var(--primary);color:var(--on-primary)}
+.chips input.num{width:104px;height:42px;border-radius:99px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);text-align:center;font-size:15px;font-weight:700;padding:0 10px;-moz-appearance:textfield}
+.chips input.num:focus{border-color:var(--primary)}
+.swrow{display:flex;align-items:center;gap:12px;justify-content:space-between}
+.swrow .t{min-width:0}
+.swrow .t b{display:block;font-size:15px}
+.swrow .t span{display:block;font-size:13px;color:var(--mut)}
+.sw{width:54px;height:32px;border-radius:99px;border:0;background:var(--line);position:relative;flex:none;transition:background .15s}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:var(--shadow-sm);transition:transform .15s}
+.sw.on{background:var(--primary)}
+.sw.on::after{transform:translateX(22px)}
+.stp{display:flex;align-items:center;gap:6px}
+.stp button{width:44px;height:44px;border-radius:14px;border:0;background:var(--surface2);color:var(--ink);font-size:22px;font-weight:700;padding:0}
+.stp button:disabled{opacity:.35}
+.stp .v{min-width:44px;text-align:center;font-weight:800;font-size:20px;font-variant-numeric:tabular-nums}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two .stp{justify-content:space-between}
+.count{display:flex;align-items:center;gap:10px}
+.count .cnt{flex:1;text-align:center;font-size:20px;font-weight:800}
+.count button{width:52px;height:52px;border-radius:16px;border:0;background:var(--surface2);color:var(--ink);font-size:26px;font-weight:700;padding:0}
+.count button:disabled{opacity:.35}
+.names{display:flex;flex-direction:column;gap:8px}
+.nrow{display:flex;align-items:center;gap:10px}
+.nrow input{flex:1;min-width:0}
+.sumline{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.pill{background:var(--surface2);color:var(--ink);border-radius:99px;padding:6px 12px;font-size:13px;font-weight:700}
+.rules{display:flex;flex-direction:column;gap:8px;font-size:14px}
+.rules div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding-bottom:8px}
+.rules div:last-child{border:0;padding:0}
+.rules b{text-align:right}
+.rules span{color:var(--mut)}
+
+/* аватар */
+.av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:18px;color:#fff;background:hsl(var(--h) 56% 42%);flex:none}
+.av.sm{width:30px;height:30px;font-size:13px}
+
+/* туры */
+details.round{margin:6px 0}
+summary{list-style:none;display:flex;align-items:center;gap:10px;padding:14px 4px 8px;font-weight:800;font-size:19px;letter-spacing:-.02em;cursor:pointer}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"";width:8px;height:8px;border-right:2.5px solid var(--mut);border-bottom:2.5px solid var(--mut);transform:rotate(-45deg);transition:transform .15s;margin:0 4px 0 2px}
+details[open]>summary::before{transform:rotate(45deg)}
+.badge{margin-left:auto;font-size:13px;background:var(--surface2);padding:3px 10px;border-radius:99px;color:var(--mut);font-weight:700;font-variant-numeric:tabular-nums}
+.badge.ok{background:var(--primary-soft);color:var(--primary)}
+
+/* карточка матча */
+.match{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 14px 14px;margin:12px 0;box-shadow:var(--shadow)}
+.match.done{border-color:var(--good-line)}
+.mtitle{font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--mut);margin-bottom:14px}
+.duel,.grow{display:grid;grid-template-columns:minmax(0,1fr) 76px minmax(0,1fr);gap:8px;align-items:center}
+.duel{position:relative}
+.duel::before{content:"";position:absolute;left:50%;top:2px;bottom:2px;border-left:2px dashed var(--line);transform:translateX(-1px)}
+.side{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;min-width:0}
+.pn{font-weight:700;font-size:15px;line-height:1.2;max-width:100%;overflow-wrap:anywhere}
+.side.win .pn{color:var(--good)}
+.side.lose{opacity:.55}
+.vs{position:relative;z-index:1;background:var(--surface);padding:6px 0;text-align:center;font-weight:800;font-size:14px;color:var(--mut);font-variant-numeric:tabular-nums}
+.vs.ser{color:var(--ink);font-size:22px}
+.grow{margin-top:12px}
+.glabel{text-align:center;font-size:12px;font-weight:600;color:var(--mut)}
+input.sc{width:100%;min-width:0;height:54px;text-align:center;font-size:26px;font-weight:800;font-variant-numeric:tabular-nums;background:var(--surface2);color:var(--ink);border:1.5px solid transparent;border-radius:14px;padding:0;-moz-appearance:textfield}
+input.sc:focus{border-color:var(--primary);background:var(--surface)}
+input.sc::-webkit-outer-spin-button,input.sc::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.locked{background:var(--surface);border:1.5px dashed var(--line);border-radius:var(--r);padding:18px;margin:12px 0;color:var(--mut);text-align:center;font-size:14px}
+
+/* таблица */
+.tbl{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;margin-top:10px}
+.thead,.trow{display:grid;grid-template-columns:30px minmax(0,1fr) 26px 50px 42px 44px;gap:6px;align-items:center;padding:10px 12px;text-align:center;font-variant-numeric:tabular-nums}
+.thead{font-size:11px;font-weight:800;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;background:var(--surface2)}
+.thead .who{text-align:left}
+.trow{border-top:1px solid var(--line);font-size:15px}
+.trow:first-of-type{border-top:0}
+.who{display:flex;align-items:center;gap:10px;min-width:0;text-align:left;font-weight:700}
+.who span:last-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rank{width:26px;height:26px;border-radius:9px;display:grid;place-items:center;font-weight:800;font-size:13px;background:var(--surface2);color:var(--mut)}
+.z-a .rank{background:var(--primary);color:var(--on-primary)}
+.z-b .rank{background:var(--ball);color:var(--on-ball)}
+.pt{font-weight:800;font-size:18px}
+.legend{font-size:13px;color:var(--mut);margin:12px 2px;display:flex;flex-direction:column;gap:6px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:8px}
+
+/* плей-офф */
+.podium{background:var(--primary-soft);border:1px solid var(--primary);border-radius:var(--r);padding:18px;margin:14px 0;display:flex;flex-direction:column;gap:6px;overflow-wrap:anywhere}
+.podium .champ{display:flex;align-items:center;gap:12px;font-size:22px;font-weight:800}
+.podium .champ svg{width:34px;height:34px;stroke:var(--ball);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.podium .pl{font-size:16px;font-weight:600}
+.podium .pl span{color:var(--mut);margin-right:8px;font-weight:700}
+
+/* нижняя навигация */
+nav{position:fixed;left:50%;transform:translateX(-50%);width:min(560px,calc(100% - 24px));bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:6;display:flex;gap:4px;padding:6px;background:var(--nav-bg);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow)}
+nav button{flex:1;min-width:0;border:0;background:none;color:var(--mut);padding:8px 0 7px;font-size:11px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:3px;border-radius:20px}
+nav button svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+nav button.on{color:var(--primary);background:var(--primary-soft)}
+
+.ovl{position:fixed;inset:0;z-index:20;background:var(--shade);display:flex;align-items:center;justify-content:center;padding:16px}
+.dlg{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;max-width:420px;width:100%;box-shadow:var(--shadow)}
+.dlg p{margin:0 0 4px;font-size:16px}
+.noscript{padding:24px 16px;max-width:560px;margin:0 auto}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <div class="toprow"><div class="brand"><span class="ball"></span><span>Настольный теннис</span></div><div class="meta" id="meta"></div></div>
+  <div class="bar" id="bar" hidden><i id="barfill"></i></div>
+</div></header>
+<main id="app"></main>
+<nav id="nav" style="display:none"></nav>
+<div id="dlg"></div>
+<noscript><div class="noscript"><h2>Страница открылась без скриптов</h2><p>Такое бывает в предпросмотре файла («Файлы», почта, мессенджер). Откройте ссылку на турнир в Safari или Chrome. Если вам прислали файл, попросите у отправителя ссылку.</p></div></noscript>
+<script>
+(function(){
+'use strict';
+var MINP=3,MAXP=12,LS='ttt-tournament-v2',LS_OLD='ttt-tournament-v1',KEYLEN=6;
+var DEF={pts:11,deuce:true,bo:1,cycles:1,pw:1,pl:0,po:'final',third:true,boSf:1,boFin:3,boThr:1,ptsPo:null};
+var N=6,TOTAL=15,BASE=5,ROUNDS=5,SCHED=[],CFG=clone(DEF);
+var S=null,tab='tours',storageOK=true,openState={};
+var draft={count:6,names:['','','','','','','','','','','',''],cfg:clone(DEF)};
+
+function clone(x){return JSON.parse(JSON.stringify(x))}
+function intIn(v,lo,hi,d){v=parseInt(v,10);return(isNaN(v)||v<lo||v>hi)?d:v}
+function oneOf(v,list,d){v=typeof v==='string'&&v!==''&&!isNaN(+v)?+v:v;return list.indexOf(v)>=0?v:d}
+function plural(n,one,few,many){var a=n%10,b=n%100;return(a===1&&b!==11)?one:((a>=2&&a<=4&&(b<10||b>=20))?few:many)}
+
+/* ---------- настройки ---------- */
+function sane(c){
+  c=c||{};var o={};
+  o.pts=intIn(c.pts,3,99,DEF.pts);
+  o.deuce=c.deuce===undefined?DEF.deuce:!!c.deuce;
+  o.bo=oneOf(c.bo,[1,3,5],DEF.bo);
+  o.cycles=oneOf(c.cycles,[1,2],DEF.cycles);
+  o.pw=intIn(c.pw,1,9,DEF.pw);
+  o.pl=intIn(c.pl,0,8,DEF.pl);if(o.pl>=o.pw)o.pl=o.pw-1;
+  o.po=oneOf(c.po,['none','final','semi'],DEF.po);
+  o.third=c.third===undefined?DEF.third:!!c.third;
+  o.boSf=oneOf(c.boSf,[1,3,5],DEF.boSf);
+  o.boFin=oneOf(c.boFin,[1,3,5],DEF.boFin);
+  o.boThr=oneOf(c.boThr,[1,3,5],DEF.boThr);
+  o.ptsPo=(c.ptsPo==null)?null:intIn(c.ptsPo,3,99,null);
+  return o;
+}
+function isGame(x){return Array.isArray(x)&&x.length===2&&typeof x[0]==='number'&&typeof x[1]==='number'&&x[0]>=0&&x[1]>=0&&x[0]<=999&&x[1]<=999}
+function migrate(p){
+  if(!p||!Array.isArray(p.names)||p.names.length<MINP||p.names.length>MAXP)return null;
+  if(!p.res||typeof p.res!=='object'||!p.tb||typeof p.tb!=='object')return null;
+  var n=p.names.length,old=!p.v||p.v<2;
+  var q={v:2,names:p.names.map(function(x){return String(x).slice(0,20)}),cfg:null,res:{},tb:{},po:{}};
+  q.cfg=old?sane({pw:1,pl:0,po:'final',third:true,boSf:1,boFin:3,boThr:1}):sane(p.cfg);
+  Object.keys(p.res).forEach(function(k){
+    var r=p.res[k];if(!Array.isArray(r))return;
+    if(r.length&&typeof r[0]==='number'){if(isGame(r))q.res[k]=[r]}
+    else q.res[k]=r.filter(isGame);
+  });
+  function okIdx(x){return typeof x==='number'&&x>=0&&x<n&&x%1===0}
+  function cleanM(m){
+    if(!m||typeof m!=='object'||!okIdx(m.a)||!okIdx(m.b)||m.a===m.b)return null;
+    var g=Array.isArray(m.g)?m.g.filter(isGame):[];
+    if(isGame(m.s))g=[m.s];
+    return{a:m.a,b:m.b,g:g};
+  }
+  Object.keys(p.tb).forEach(function(k){
+    var t=cleanM(p.tb[k]);if(!t)return;
+    t.lvl=intIn(p.tb[k].lvl,1,20,1);
+    q.tb[t.lvl+':'+Math.min(t.a,t.b)+'-'+Math.max(t.a,t.b)]={lvl:t.lvl,a:Math.min(t.a,t.b),b:Math.max(t.a,t.b),g:t.g.length?[t.g[0]]:[]};
+  });
+  if(old){var f=cleanM(p.fin),t2=cleanM(p.thr);if(f)q.po.fin=f;if(t2)q.po.thr=t2}
+  else if(p.po&&typeof p.po==='object'){['sf1','sf2','fin','thr'].forEach(function(k){var m=cleanM(p.po[k]);if(m)q.po[k]=m})}
+  return q;
+}
+function applyState(p){
+  S=p;CFG=S.cfg;N=S.names.length;
+  BASE=N%2?N:N-1;ROUNDS=BASE*CFG.cycles;TOTAL=N*(N-1)/2*CFG.cycles;
+  SCHED=buildSched(N,CFG.cycles);
+}
+
+/* ---------- хранилище ---------- */
+try{localStorage.setItem('_t','1');localStorage.removeItem('_t')}catch(e){storageOK=false}
+if(storageOK){
+  try{
+    var raw=localStorage.getItem(LS)||localStorage.getItem(LS_OLD);
+    if(raw){var q0=migrate(JSON.parse(raw));if(q0)applyState(q0)}
+  }catch(e){}
+}
+function save(){
+  if(!storageOK)return;
+  try{if(S)localStorage.setItem(LS,JSON.stringify(S));else localStorage.removeItem(LS)}catch(e){storageOK=false}
+}
+
+/* ---------- расписание (круговой метод) ---------- */
+function buildSched(n,cycles){
+  var m=[],id=0,size=n%2?n+1:n,fix=size-1,base=size-1;
+  for(var c=0;c<cycles;c++){
+    for(var r=0;r<base;r++){
+      var pairs=[[r,fix]];
+      for(var k=1;k<size/2;k++)pairs.push([(r+k)%fix,(r-k+fix)%fix]);
+      pairs.forEach(function(p){
+        if(p[0]>=n||p[1]>=n)return; /* фиктивный игрок: в этом туре отдыхает */
+        var a=p[0],b=p[1];if(c%2===1){var t=a;a=b;b=t}
+        m.push({id:id++,round:c*base+r,a:a,b:b});
+      });
+    }
+  }
+  return m;
+}
+function restOf(r){
+  var busy={};
+  SCHED.forEach(function(m){if(m.round===r){busy[m.a]=1;busy[m.b]=1}});
+  for(var i=0;i<N;i++)if(!busy[i])return i;
+  return -1;
+}
+function nm(i){return S.names[i]}
+
+/* ---------- партии и матчи ---------- */
+function need(bo){return Math.ceil(bo/2)}
+function seriesOf(g,bo){
+  g=g||[];var wa=0,wb=0,played=0,nd=need(bo);
+  for(var k=0;k<bo;k++){
+    if(wa>=nd||wb>=nd)break;
+    var x=g[k];if(!x)break;
+    if(x[0]>x[1])wa++;else wb++;
+    played++;
+  }
+  var done=wa>=nd||wb>=nd;
+  return{wa:wa,wb:wb,played:played,done:done,rows:done?played:Math.min(bo,played+1)};
+}
+function boLabel(bo){return bo===1?'1 партия':'до '+need(bo)+' побед'}
+function poPts(){return CFG.ptsPo||CFG.pts}
+function validateGame(a,b,pts,deuce){
+  if(isNaN(a)||isNaN(b))return 'Введите счёт обеих сторон';
+  if(a<0||b<0)return 'Счёт не может быть отрицательным';
+  if(a===b)return 'Ничья в партии невозможна';
+  var hi=Math.max(a,b),lo=Math.min(a,b);
+  if(!deuce){
+    if(hi!==pts)return 'Партия идёт до '+pts+': победитель набирает ровно '+pts;
+    return '';
+  }
+  if(hi<pts)return 'Партия играется минимум до '+pts+' очков';
+  if(hi===pts&&lo>pts-2)return 'При '+(pts-1)+':'+(pts-1)+' играем до разницы в 2 мяча (например, '+(pts+1)+':'+(pts-1)+')';
+  if(hi>pts&&hi-lo!==2)return 'После '+(pts-1)+':'+(pts-1)+' разница должна быть ровно 2 мяча ('+(pts+1)+':'+(pts-1)+', '+(pts+2)+':'+pts+'…)';
+  return '';
+}
+
+/* ---------- таблица ---------- */
+function standings(){
+  var st=[],i;
+  for(i=0;i<N;i++)st.push({i:i,pts:0,w:0,l:0,gw:0,gl:0,pf:0,pa:0,n:0,mini:0,tb:0});
+  SCHED.forEach(function(m){
+    var g=S.res[m.id],s=seriesOf(g,CFG.bo);
+    if(!s.done)return;
+    var A=st[m.a],B=st[m.b];
+    A.n++;B.n++;A.gw+=s.wa;A.gl+=s.wb;B.gw+=s.wb;B.gl+=s.wa;
+    g.slice(0,s.played).forEach(function(x){A.pf+=x[0];A.pa+=x[1];B.pf+=x[1];B.pa+=x[0]});
+    if(s.wa>s.wb){A.w++;B.l++;A.pts+=CFG.pw;B.pts+=CFG.pl}else{B.w++;A.l++;B.pts+=CFG.pw;A.pts+=CFG.pl}
+  });
+  var by={};
+  st.forEach(function(s){(by[s.pts]=by[s.pts]||[]).push(s.i)});
+  st.forEach(function(s){
+    var grp=by[s.pts];
+    if(grp.length>1)SCHED.forEach(function(m){
+      var sr=seriesOf(S.res[m.id],CFG.bo);
+      if(!sr.done||grp.indexOf(m.a)<0||grp.indexOf(m.b)<0)return;
+      var aw=sr.wa>sr.wb;
+      if(m.a===s.i)s.mini+=aw?CFG.pw:CFG.pl;
+      if(m.b===s.i)s.mini+=aw?CFG.pl:CFG.pw;
+    });
+    s.d=s.pf-s.pa;s.gd=s.gw-s.gl;
+  });
+  Object.keys(S.tb).forEach(function(k){
+    var t=S.tb[k],sr=seriesOf(t.g,1);if(!sr.done)return;
+    st[sr.wa>sr.wb?t.a:t.b].tb++;
+  });
+  st.forEach(function(s){s.key=[s.pts,s.mini,s.gd,s.d,s.pf,s.tb]});
+  st.sort(function(x,y){
+    for(var k=0;k<KEYLEN;k++)if(x.key[k]!==y.key[k])return y.key[k]-x.key[k];
+    return x.i-y.i;
+  });
+  return st;
+}
+function sameKey(x,y){for(var k=0;k<KEYLEN;k++)if(x.key[k]!==y.key[k])return false;return true}
+function sameSet(p,q){return(p[0]===q[0]&&p[1]===q[1])||(p[0]===q[1]&&p[1]===q[0])}
+
+/* режим плей-офф с учётом числа игроков */
+function eMode(){return(CFG.po==='semi'&&N<4)?'final':CFG.po}
+function eThird(){return CFG.po!=='none'&&CFG.third&&N>=4}
+/* границы мест, где ничью нужно разрешить */
+function boundaries(){
+  var m=eMode();
+  if(m==='none')return[1];
+  if(m==='final')return eThird()?[2,4]:[2];
+  return[1,2,3,4];
+}
+/* Нужные дополнительные партии при полной ничьей на важных границах */
+function tieNeeds(st){
+  var need=[],seen={};
+  boundaries().forEach(function(b){
+    if(b>=N||!sameKey(st[b-1],st[b]))return;
+    var s=b-1;while(s>0&&sameKey(st[s-1],st[b-1]))s--;
+    var e=b;while(e<N-1&&sameKey(st[e+1],st[b]))e++;
+    if(seen[s])return;seen[s]=1;
+    var run=st.slice(s,e+1).map(function(x){return x.i});
+    for(var lvl=1;lvl<=10;lvl++){
+      var miss=[];
+      for(var x=0;x<run.length;x++)for(var y=x+1;y<run.length;y++){
+        var a=Math.min(run[x],run[y]),c=Math.max(run[x],run[y]);
+        var t=S.tb[lvl+':'+a+'-'+c];
+        if(!t||!seriesOf(t.g,1).done)miss.push({lvl:lvl,a:a,b:c});
+      }
+      if(miss.length){need=need.concat(miss);break}
+    }
+  });
+  return need;
+}
+
+/* ---------- плей-офф ---------- */
+function planPlayoff(st,po){
+  var mode=eMode(),third=eThird(),seeds=st.map(function(x){return x.i});
+  var M={},order=[],out={champ:null,second:null,third:null,fourth:null,shared:null};
+  function slot(key,a,b,bo){
+    var ex=po[key],m={key:key,bo:bo,a:null,b:null,g:[]};
+    if(a!=null&&b!=null){
+      m.a=a;m.b=b;
+      if(ex&&sameSet([ex.a,ex.b],[a,b])){m.a=ex.a;m.b=ex.b;m.g=ex.g||[]}
+    }
+    m.ser=seriesOf(m.g,bo);M[key]=m;order.push(key);return m;
+  }
+  if(mode==='none'){out.champ=seeds[0];return{mode:mode,third:false,M:M,order:order,out:out}}
+  function W(m){return m.ser.done?(m.ser.wa>m.ser.wb?m.a:m.b):null}
+  function L(m){return m.ser.done?(m.ser.wa>m.ser.wb?m.b:m.a):null}
+  var fa,fb,ta=null,tb2=null;
+  if(mode==='semi'){
+    var s1=slot('sf1',seeds[0],seeds[3],CFG.boSf),s2=slot('sf2',seeds[1],seeds[2],CFG.boSf);
+    fa=W(s1);fb=W(s2);
+    if(third){ta=L(s1);tb2=L(s2)}
+    else if(s1.ser.done&&s2.ser.done)out.shared=[L(s1),L(s2)];
+  }else{fa=seeds[0];fb=seeds[1];if(third){ta=seeds[2];tb2=seeds[3]}}
+  var fin=slot('fin',fa,fb,CFG.boFin),thr=null;
+  if(third)thr=slot('thr',ta,tb2,CFG.boThr);
+  if(fin.ser.done){out.champ=W(fin);out.second=L(fin)}
+  if(thr&&thr.ser.done){out.third=W(thr);out.fourth=L(thr)}
+  return{mode:mode,third:third,M:M,order:order,out:out};
+}
+function poHasGames(){return Object.keys(S.po).some(function(k){return S.po[k].g&&S.po[k].g.length})}
+
+/* ---------- DOM-помощники ---------- */
+function h(tag,props){
+  var e=document.createElement(tag),k;
+  for(k in(props||{})){
+    var v=props[k];
+    if(v==null)continue;
+    if(k==='class')e.className=v;
+    else if(k.slice(0,2)==='on')e.addEventListener(k.slice(2),v);
+    else e.setAttribute(k,v);
+  }
+  for(var i=2;i<arguments.length;i++){
+    var c=arguments[i];
+    if(Array.isArray(c))c.forEach(function(z){if(z!=null&&z!==false)e.append(z.nodeType?z:document.createTextNode(String(z)))});
+    else if(c!=null&&c!==false)e.append(c.nodeType?c:document.createTextNode(String(c)));
+  }
+  return e;
+}
+function msg(text,warn){return h('div',{class:'msg'+(warn?' warn':'')},text)}
+function av(i,sm){
+  var name=(S&&S.names[i])||(draft.names[i])||'';
+  var ch=Array.from(String(name).trim())[0]||String(i+1);
+  return h('span',{class:'av'+(sm?' sm':''),style:'--h:'+Math.round((i*137.5+205)%360)},ch.toUpperCase());
+}
+/* окно подтверждения внутри страницы: системное confirm() есть не везде */
+function confirmBox(text,yesLabel,onYes,onNo){
+  var box=document.getElementById('dlg');
+  function close(){box.textContent='';box.className=''}
+  var yes=h('button',{class:'btn primary',onclick:function(){close();onYes()}},yesLabel);
+  box.textContent='';box.className='ovl';
+  box.append(h('div',{class:'dlg',role:'alertdialog','aria-modal':'true'},
+    h('p',null,text),
+    h('div',{class:'btns'},h('button',{class:'btn',onclick:function(){close();if(onNo)onNo()}},'Отмена'),yes)));
+  yes.focus();
+}
+
+/* ---------- элементы настроек ---------- */
+function seg(opts,val,onPick,label){
+  return h('div',{class:'seg',role:'group','aria-label':label||null},opts.map(function(o){
+    var on=o[0]===val;
+    return h('button',{type:'button',class:'segb'+(on?' on':''),'aria-pressed':String(on),onclick:function(){if(!on)onPick(o[0])}},o[1]);
+  }));
+}
+function chipsEl(opts,val,onPick){
+  return opts.map(function(o){
+    var on=o[0]===val;
+    return h('button',{type:'button',class:'chip'+(on?' on':''),'aria-pressed':String(on),onclick:function(){if(!on)onPick(o[0])}},o[1]);
+  });
+}
+function sw(title,hint,on,onToggle){
+  return h('div',{class:'swrow'},
+    h('div',{class:'t'},h('b',null,title),hint?h('span',null,hint):null),
+    h('button',{type:'button',class:'sw'+(on?' on':''),role:'switch','aria-checked':String(on),'aria-label':title,onclick:function(){onToggle(!on)}}));
+}
+function stepper(val,min,max,onSet,label){
+  return h('div',{class:'stp'},
+    h('button',{type:'button','aria-label':label+': меньше',disabled:val<=min?'':null,onclick:function(){onSet(val-1)}},'−'),
+    h('div',{class:'v'},val),
+    h('button',{type:'button','aria-label':label+': больше',disabled:val>=max?'':null,onclick:function(){onSet(val+1)}},'+'));
+}
+function fld(label,body){return h('div',{class:'fld'},label?h('div',{class:'lbl'},label):null,body)}
+function ptsChips(val,list,onSet,idp,extra){
+  var inList=list.some(function(x){return x[0]===val});
+  var num=h('input',{id:idp,class:'num',type:'number',inputmode:'numeric',min:'3',max:'99',placeholder:'Другое',value:(!inList&&val!=null)?String(val):'','aria-label':'Своё число очков'});
+  num.addEventListener('change',function(){
+    var v=parseInt(num.value,10);
+    if(!isNaN(v)&&v>=3&&v<=99)onSet(v);else num.value='';
+  });
+  return h('div',{class:'chips'},chipsEl(list,val,onSet),num);
+}
+var BO_OPTS=[[1,'1 партия'],[3,'До 2 побед'],[5,'До 3 побед']];
+var PTS_LIST=[[7,'7'],[11,'11'],[15,'15'],[21,'21']];
+var PRESETS=[[1,0],[2,1],[3,0],[3,1]];
+
+/* scope: 'all' — перед стартом, 'live' — во время турнира (только плей-офф и очки) */
+function rulesPanel(cfg,scope,n,onSet){
+  var p=h('div'),isAll=scope==='all';
+  if(isAll){
+    p.append(h('div',{class:'grp'},
+      h('h3',null,'Партия'),
+      fld('Играем до очков',ptsChips(cfg.pts,PTS_LIST,function(v){onSet({pts:v})},'ptsCustom')),
+      sw('До разницы в 2 мяча','При '+(cfg.pts-1)+':'+(cfg.pts-1)+' игра идёт дальше, пока не будет перевес в 2 очка',cfg.deuce,function(v){onSet({deuce:v})})));
+    p.append(h('div',{class:'grp'},
+      h('h3',null,'Групповой этап'),
+      fld('Матч',seg(BO_OPTS,cfg.bo,function(v){onSet({bo:v})},'Формат матча')),
+      fld('Сколько раз играть с каждым',seg([[1,'Один круг'],[2,'Два круга']],cfg.cycles,function(v){onSet({cycles:v})},'Круги'))));
+  }
+  var pres=PRESETS.map(function(x){return[x.join(':'),x[0]+' : '+x[1]]});
+  var curPre=cfg.pw+':'+cfg.pl;
+  p.append(h('div',{class:'grp'},
+    h('h3',null,'Очки в таблице'),
+    h('div',{class:'chips'},chipsEl(pres,curPre,function(v){var a=v.split(':');onSet({pw:+a[0],pl:+a[1]})})),
+    h('div',{class:'two'},
+      fld('За победу',stepper(cfg.pw,1,9,function(v){onSet({pw:v})},'За победу')),
+      fld('За поражение',stepper(cfg.pl,0,cfg.pw-1,function(v){onSet({pl:v})},'За поражение')))));
+  var g=h('div',{class:'grp'},h('h3',null,'Плей-офф'),
+    seg([['none','Нет'],['final','Финал'],['semi','Полуфиналы']],cfg.po,function(v){onSet({po:v})},'Режим плей-офф'));
+  if(cfg.po==='none')g.append(h('div',{class:'hint'},'Победитель определяется по итоговой таблице.'));
+  else{
+    var semi=cfg.po==='semi'&&n>=4,third=cfg.third&&n>=4;
+    if(cfg.po==='semi'&&n<4)g.append(h('div',{class:'hint'},'Полуфиналы начинаются с 4 игроков. При меньшем составе будет финал.'));
+    if(n>=4)g.append(sw('Матч за 3-е место',cfg.po==='semi'?'Играют проигравшие в полуфиналах':'Играют игроки на 3 и 4 местах',cfg.third,function(v){onSet({third:v})}));
+    if(semi)g.append(fld('Полуфинал',seg(BO_OPTS,cfg.boSf,function(v){onSet({boSf:v})},'Формат полуфинала')));
+    g.append(fld('Финал',seg(BO_OPTS,cfg.boFin,function(v){onSet({boFin:v})},'Формат финала')));
+    if(third)g.append(fld('Матч за 3-е место',seg(BO_OPTS,cfg.boThr,function(v){onSet({boThr:v})},'Формат матча за 3-е место')));
+    g.append(fld('Партия в плей-офф до',ptsChips(cfg.ptsPo,[[null,'Как в группе']].concat(PTS_LIST),function(v){onSet({ptsPo:v})},'ptsPoCustom')));
+  }
+  p.append(g);
+  return p;
+}
+function playoffText(cfg,n){
+  if(cfg.po==='none')return'без плей-офф';
+  var semi=cfg.po==='semi'&&n>=4,third=cfg.third&&n>=4,t=[];
+  if(semi)t.push('полуфиналы ('+boLabel(cfg.boSf)+')');
+  t.push('финал ('+boLabel(cfg.boFin)+')');
+  if(third)t.push('матч за 3-е ('+boLabel(cfg.boThr)+')');
+  return t.join(', ');
+}
+
+/* ---------- карточка матча ---------- */
+function matchCard(o){
+  var bo=o.bo,pts=o.pts,deuce=o.deuce,g=o.games||[];
+  var ser=seriesOf(g,bo),rows=[],id=o.id||'m';
+  var center=h('div',{class:'vs'+(bo>1?' ser':'')},bo>1?(ser.wa+' : '+ser.wb):'vs');
+  var err=h('div',{class:'err'});
+  for(var k=0;k<bo;k++){
+    var sc=g[k];
+    var ia=h('input',{id:id+'-'+k+'a',class:'sc',type:'number',inputmode:'numeric',min:'0',max:'99',value:sc?String(sc[0]):'','aria-label':'Счёт '+nm(o.a)+(bo>1?', партия '+(k+1):'')});
+    var ib=h('input',{id:id+'-'+k+'b',class:'sc',type:'number',inputmode:'numeric',min:'0',max:'99',value:sc?String(sc[1]):'','aria-label':'Счёт '+nm(o.b)+(bo>1?', партия '+(k+1):'')});
+    var el=h('div',{class:'grow'},ia,h('div',{class:'glabel'},bo>1?'Партия '+(k+1):'Счёт'),ib);
+    rows.push({el:el,a:ia,b:ib});
+  }
+  function val(r){return{sa:r.a.value.trim(),sb:r.b.value.trim()}}
+  function refresh(){
+    var wa=0,wb=0,n=0,last=-1,nd=need(bo),done=false,k2;
+    for(k2=0;k2<bo;k2++){var v=val(rows[k2]);if(v.sa!==''||v.sb!=='')last=k2}
+    for(k2=0;k2<bo&&!done;k2++){
+      var r=val(rows[k2]);
+      if(r.sa===''||r.sb==='')break;
+      var a=parseInt(r.sa,10),b=parseInt(r.sb,10);
+      if(validateGame(a,b,pts,deuce))break;
+      if(a>b)wa++;else wb++;n++;
+      if(wa>=nd||wb>=nd)done=true;
+    }
+    var target=done?n:Math.min(bo,n+1);
+    var vis=Math.max(target,last+1,1);
+    rows.forEach(function(r2,i){r2.el.hidden=i>=vis});
+    if(bo>1)center.textContent=wa+' : '+wb;
+  }
+  function readRows(){
+    var games=[],wa=0,wb=0,nd=need(bo),gap=-1,ended=false;
+    for(var k3=0;k3<bo;k3++){
+      var v=val(rows[k3]),tag=bo>1?'Партия '+(k3+1)+': ':'';
+      if(v.sa===''&&v.sb===''){if(gap<0)gap=k3;continue}
+      if(gap>=0)return{err:'Партии идут по порядку: заполните партию '+(gap+1)};
+      if(ended)return{err:'Матч уже решён, партия '+(k3+1)+' лишняя. Очистите её поле'};
+      var a=parseInt(v.sa,10),b=parseInt(v.sb,10),m=validateGame(a,b,pts,deuce);
+      if(m)return{err:tag+m};
+      games.push([a,b]);
+      if(a>b)wa++;else wb++;
+      if(wa>=nd||wb>=nd)ended=true;
+    }
+    return{games:games};
+  }
+  function doSave(){
+    var r=readRows();
+    if(r.err){err.textContent=r.err;return}
+    if(!r.games.length){err.textContent='Введите счёт';return}
+    o.onSave(r.games);
+  }
+  rows.forEach(function(r,k){
+    r.a.addEventListener('input',function(){refresh();if(r.a.value.length>=2)r.b.focus()});
+    r.b.addEventListener('input',function(){
+      refresh();
+      if(r.b.value.length>=2&&rows[k+1]&&!rows[k+1].el.hidden)rows[k+1].a.focus();
+    });
+    [r.a,r.b].forEach(function(el){el.addEventListener('keydown',function(ev){if(ev.key==='Enter')doSave()})});
+  });
+  var winA=ser.done&&ser.wa>ser.wb,winB=ser.done&&ser.wb>ser.wa;
+  var card=h('div',{class:'match'+(ser.done?' done':'')},
+    o.title?h('div',{class:'mtitle'},o.title):null,
+    h('div',{class:'duel'},
+      h('div',{class:'side'+(winA?' win':winB?' lose':'')},av(o.a),h('div',{class:'pn'},nm(o.a))),
+      center,
+      h('div',{class:'side'+(winB?' win':winA?' lose':'')},av(o.b),h('div',{class:'pn'},nm(o.b)))),
+    rows.map(function(r){return r.el}),
+    err,
+    h('div',{class:'btns'},
+      h('button',{class:'btn primary',onclick:doSave},g.length?'Изменить':'Сохранить'),
+      g.length?h('button',{class:'btn ghost',onclick:o.onClear},'Очистить'):null));
+  refresh();
+  return card;
+}
+function lockedCard(title,text){return h('div',null,h('div',{class:'locked'},text))}
+
+/* ---------- действия ---------- */
+var RESET_MSG='Изменение результата группового этапа сбросит дополнительные партии и плей-офф. Продолжить?';
+function hasLater(){return Object.keys(S.tb).length>0||poHasGames()}
+function dropLater(){S.tb={};S.po={}}
+function saveGroup(m,games){
+  var old=S.res[m.id],changed=JSON.stringify(old||[])!==JSON.stringify(games);
+  function go(){if(games.length)S.res[m.id]=games;else delete S.res[m.id];save();render()}
+  if(changed&&hasLater()){confirmBox(RESET_MSG,'Продолжить',function(){dropLater();go()},render);return}
+  go();
+}
+function saveTb(t,games){
+  function go(){var k=t.lvl+':'+t.a+'-'+t.b;if(games.length)S.tb[k]={lvl:t.lvl,a:t.a,b:t.b,g:games};else delete S.tb[k];save();render()}
+  if(poHasGames()){confirmBox('Дополнительная партия может изменить итоговые места и сбросит сыгранный плей-офф. Продолжить?','Продолжить',function(){S.po={};go()},render);return}
+  go();
+}
+function savePo(key,games,plan){
+  var m=plan.M[key],po2=clone(S.po);
+  if(games.length)po2[key]={a:m.a,b:m.b,g:games};else delete po2[key];
+  var plan2=planPlayoff(standings(),po2),lost=[];
+  plan.order.forEach(function(k){
+    if(k===key)return;
+    var b=plan.M[k],a=plan2.M[k];
+    if(b&&b.g.length&&a&&!a.g.length)lost.push(k);
+  });
+  function go(){
+    lost.forEach(function(k){delete po2[k]});
+    S.po=po2;save();render();
+  }
+  if(lost.length){confirmBox('Изменение результата отменит уже сыгранные матчи дальше по сетке. Продолжить?','Продолжить',go,render);return}
+  go();
+}
+function liveSet(patch){
+  function go(){
+    if(poHasGames())S.po={};
+    S.cfg=sane(Object.assign({},S.cfg,patch));CFG=S.cfg;
+    save();render();
+  }
+  if(poHasGames()){confirmBox('Изменение правил сбросит сыгранные матчи плей-офф. Продолжить?','Продолжить',go,render);return}
+  go();
+}
+
+/* ---------- экран: старт ---------- */
+function viewSetup(){
+  var w=h('div'),n=draft.count,cfg=sane(draft.cfg);draft.cfg=cfg;
+  var inputs=[];
+  function grab(){inputs.forEach(function(el,i){draft.names[i]=el.value.trim()})}
+  w.append(h('div',{class:'hero'},h('h1',null,'Новый турнир'),h('div',{class:'sub',style:'margin-top:0'},'Настройте игроков и правила. Всё, кроме правил группы, можно будет поменять потом.')));
+  var names=h('div',{class:'names'});
+  for(var i=0;i<n;i++){
+    var inp=h('input',{id:'np'+i,class:'txt',type:'text',maxlength:'20',placeholder:'Игрок '+(i+1),value:draft.names[i]||'',autocomplete:'off','aria-label':'Имя игрока '+(i+1)});
+    inputs.push(inp);
+    var row=h('div',{class:'nrow'},av(i),inp);
+    (function(idx,input,avEl){input.addEventListener('input',function(){
+      var c=Array.from(input.value.trim())[0]||String(idx+1);avEl.textContent=c.toUpperCase();
+    })})(i,inp,row.firstChild);
+    names.append(row);
+  }
+  w.append(h('div',{class:'grp'},
+    h('h3',null,'Игроки'),
+    h('div',{class:'count'},
+      h('button',{type:'button',disabled:n<=MINP?'':null,'aria-label':'Убрать игрока',onclick:function(){grab();draft.count=n-1;render()}},'−'),
+      h('div',{class:'cnt'},n+' '+plural(n,'игрок','игрока','игроков')),
+      h('button',{type:'button',disabled:n>=MAXP?'':null,'aria-label':'Добавить игрока',onclick:function(){grab();draft.count=n+1;render()}},'+')),
+    names));
+  w.append(rulesPanel(cfg,'all',n,function(patch){grab();draft.cfg=sane(Object.assign({},draft.cfg,patch));render()}));
+  var games=n*(n-1)/2*cfg.cycles,rounds=(n%2?n:n-1)*cfg.cycles;
+  w.append(h('div',{class:'sumline'},
+    h('span',{class:'pill'},games+' '+plural(games,'матч','матча','матчей')),
+    h('span',{class:'pill'},rounds+' '+plural(rounds,'тур','тура','туров')),
+    n%2?h('span',{class:'pill'},'в туре один отдыхает'):null,
+    h('span',{class:'pill'},'Плей-офф: '+playoffText(cfg,n))));
+  var err=h('div',{class:'err'});
+  w.append(err);
+  w.append(h('div',{class:'btns'},h('button',{class:'btn primary',onclick:function(){
+    var nn=inputs.map(function(el,i){return el.value.trim()||('Игрок '+(i+1))});
+    grab();
+    var low=nn.map(function(x){return x.toLowerCase()});
+    if(low.some(function(x,i){return low.indexOf(x)!==i})){err.textContent='Имена игроков должны отличаться';return}
+    applyState({v:2,names:nn,cfg:cfg,res:{},tb:{},po:{}});
+    tab='tours';openState={};save();render();
+  }},'Начать турнир')));
+  if(!storageOK)w.append(msg('Автосохранение в этом браузере недоступно. Чтобы не потерять результаты, периодически копируйте код во вкладке «Ещё».',true));
+  return w;
+}
+
+/* ---------- общие куски ---------- */
+var TROPHY='<path d="M8 4h8v5a4 4 0 0 1-8 0V4zM8 6H4v1a3 3 0 0 0 3 3M16 6h4v1a3 3 0 0 1-3 3M12 13v4M8 20h8"/>';
+function champBanner(X){
+  if(!X.plan||X.plan.out.champ==null)return null;
+  var b=h('div',{class:'banner'});
+  b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+TROPHY+'</svg>';
+  b.append(h('span',null,'Турнир завершён. Чемпион: '+nm(X.plan.out.champ)));
+  return b;
+}
+function gameRule(){
+  return 'Партия до '+CFG.pts+(CFG.deuce?', при '+(CFG.pts-1)+':'+(CFG.pts-1)+' до разницы в 2 мяча':'')+'. Матч: '+boLabel(CFG.bo)+'.';
+}
+
+/* ---------- экран: туры ---------- */
+function viewTours(X){
+  var w=h('div'),b=champBanner(X);
+  if(b)w.append(b);
+  w.append(h('div',{class:'sub'},'Сыграно матчей: '+X.played+' из '+TOTAL+'. '+gameRule()));
+  var cur=-1;
+  for(var r=0;r<ROUNDS;r++){
+    if(SCHED.filter(function(m){return m.round===r&&!seriesOf(S.res[m.id],CFG.bo).done}).length){cur=r;break}
+  }
+  if(!storageOK)w.append(msg('Автосохранение недоступно в этом браузере. Периодически копируйте код во вкладке «Ещё».',true));
+  function build(r){
+    var ms=SCHED.filter(function(m){return m.round===r});
+    var done=ms.filter(function(m){return seriesOf(S.res[m.id],CFG.bo).done}).length;
+    var open=openState[r]!==undefined?openState[r]:(r===cur);
+    var d=h('details',{class:'round'});
+    if(open)d.setAttribute('open','');
+    d.append(h('summary',{onclick:function(){openState[r]=!d.open}},'Тур '+(r+1),h('span',{class:'badge'+(done===ms.length?' ok':'')},done+'/'+ms.length)));
+    var rest=restOf(r);
+    if(rest>=0)d.append(h('div',{class:'note'},'Отдыхает в этом туре: '+nm(rest)));
+    ms.forEach(function(m){
+      d.append(matchCard({id:'g'+m.id,a:m.a,b:m.b,games:S.res[m.id]||[],bo:CFG.bo,pts:CFG.pts,deuce:CFG.deuce,
+        onSave:function(g){saveGroup(m,g)},onClear:function(){saveGroup(m,[])}}));
+    });
+    w.append(d);
+  }
+  for(var rr=0;rr<ROUNDS;rr++)build(rr);
+  return w;
+}
+
+/* ---------- экран: таблица ---------- */
+function zoneOf(idx){
+  var m=eMode();
+  if(m==='none')return idx<1?'a':'';
+  if(m==='semi')return idx<4?'a':'';
+  return idx<2?'a':(eThird()&&idx<4?'b':'');
+}
+function viewTable(X){
+  var w=h('div'),b=champBanner(X);
+  if(b)w.append(b);
+  w.append(h('h2',null,X.complete?'Итоги группы':'Таблица',X.complete?null:h('small',null,'предварительно')));
+  var t=h('div',{class:'tbl',role:'table'});
+  t.append(h('div',{class:'thead',role:'row'},h('div',null,'#'),h('div',{class:'who'},'Игрок'),h('div',null,'И'),h('div',null,'В–П'),h('div',null,'+/−'),h('div',null,'Очки')));
+  X.st.forEach(function(s,idx){
+    t.append(h('div',{class:'trow z-'+(zoneOf(idx)||'n'),role:'row'},
+      h('div',null,h('span',{class:'rank'},idx+1)),
+      h('div',{class:'who'},av(s.i,true),h('span',null,nm(s.i))),
+      h('div',null,s.n),h('div',null,s.w+'–'+s.l),
+      h('div',null,(s.d>0?'+':'')+s.d),
+      h('div',{class:'pt'},s.pts)));
+  });
+  w.append(t);
+  var mode=eMode(),lg=h('div',{class:'legend'});
+  if(mode==='none')lg.append(h('div',null,h('span',{class:'dot',style:'background:var(--primary)'}),'Победитель определяется по таблице'));
+  else if(mode==='semi')lg.append(h('div',null,h('span',{class:'dot',style:'background:var(--primary)'}),'1–4 места: полуфиналы (1–4 и 2–3)'));
+  else{
+    lg.append(h('div',null,h('span',{class:'dot',style:'background:var(--primary)'}),'1–2 места: финал'));
+    if(eThird())lg.append(h('div',null,h('span',{class:'dot',style:'background:var(--ball)'}),'3–4 места: матч за 3-е место'));
+  }
+  lg.append(h('div',null,'За победу '+CFG.pw+' '+plural(CFG.pw,'очко','очка','очков')+', за поражение '+CFG.pl+'. При равенстве: личные встречи, '+(CFG.bo>1?'разница партий, ':'')+'разница мячей, забитые мячи, затем дополнительная партия до '+CFG.pts+'.'));
+  w.append(lg);
+
+  var tbList=Object.keys(S.tb).map(function(k){return S.tb[k]}).filter(function(x){return seriesOf(x.g,1).done});
+  X.need.forEach(function(x){tbList.push({lvl:x.lvl,a:x.a,b:x.b,g:[]})});
+  tbList.sort(function(x,y){return x.lvl-y.lvl||x.a-y.a||x.b-y.b});
+  if(tbList.length){
+    w.append(h('h2',null,'Дополнительные партии'));
+    if(X.need.length)w.append(msg('Ничья по всем показателям на важном для турнира месте. Сыграйте дополнительные партии до '+CFG.pts+'.',true));
+    tbList.forEach(function(x){
+      w.append(matchCard({id:'tb'+x.lvl+'-'+x.a+'-'+x.b,title:'Дополнительная партия'+(x.lvl>1?' · круг '+x.lvl:''),a:x.a,b:x.b,games:x.g,bo:1,pts:CFG.pts,deuce:CFG.deuce,
+        onSave:function(g){saveTb(x,g)},onClear:function(){saveTb(x,[])}}));
+    });
+  }
+  return w;
+}
+
+/* ---------- экран: плей-офф ---------- */
+var PO_TITLE={sf1:'Полуфинал 1',sf2:'Полуфинал 2',fin:'Финал',thr:'Матч за 3-е место'};
+function viewPlayoff(X){
+  var w=h('div');
+  if(!X.complete){w.append(msg('Плей-офф начнётся после группового этапа. Осталось матчей: '+(TOTAL-X.played)+'.'));return w}
+  if(X.need.length){w.append(msg('Ничья на важном месте. Сначала сыграйте дополнительные партии во вкладке «Таблица».',true));return w}
+  var plan=X.plan,out=plan.out;
+  if(plan.mode==='none'){
+    var pd0=h('div',{class:'podium'});
+    var c0=h('div',{class:'champ'});c0.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+TROPHY+'</svg>';
+    c0.append(h('span',null,'Победитель: '+nm(out.champ)));
+    pd0.append(c0);
+    w.append(h('h2',null,'Итог'),pd0,h('div',{class:'sub'},'Плей-офф отключён в правилах, победитель определён по таблице группового этапа.'));
+    return w;
+  }
+  if(out.champ!=null){
+    var pod=h('div',{class:'podium'}),c=h('div',{class:'champ'});
+    c.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+TROPHY+'</svg>';
+    c.append(h('span',null,'Чемпион: '+nm(out.champ)));
+    pod.append(c,h('div',{class:'pl'},h('span',null,'2'),nm(out.second)));
+    if(out.third!=null)pod.append(h('div',{class:'pl'},h('span',null,'3'),nm(out.third)),h('div',{class:'pl'},h('span',null,'4'),nm(out.fourth)));
+    else if(out.shared)pod.append(h('div',{class:'pl'},h('span',null,'3'),nm(out.shared[0])+' и '+nm(out.shared[1])));
+    w.append(pod);
+  }
+  var seedsTxt={sf1:'1 место против 4 места',sf2:'2 место против 3 места'};
+  plan.order.forEach(function(key){
+    var m=plan.M[key];
+    w.append(h('h2',null,PO_TITLE[key],h('small',null,boLabel(m.bo))));
+    if(m.a==null){
+      w.append(lockedCard(null,key==='fin'?'Финалисты определятся после полуфиналов':'Участники определятся после полуфиналов'));
+      return;
+    }
+    w.append(matchCard({id:'po-'+key,title:seedsTxt[key]||null,a:m.a,b:m.b,games:m.g,bo:m.bo,pts:poPts(),deuce:CFG.deuce,
+      onSave:function(g){savePo(key,g,plan)},onClear:function(){savePo(key,[],plan)}}));
+  });
+  return w;
+}
+
+/* ---------- экран: ещё ---------- */
+function encodeState(){return 'TTT2:'+btoa(unescape(encodeURIComponent(JSON.stringify(S))))}
+function decodeState(txt){
+  txt=(txt||'').trim();
+  if(!/^TTT[12]:/.test(txt))throw new Error('format');
+  var p=JSON.parse(decodeURIComponent(escape(atob(txt.slice(5)))));
+  var q=migrate(p);if(!q)throw new Error('data');
+  return q;
+}
+function viewMore(){
+  var w=h('div');
+  if(!storageOK)w.append(msg('Автосохранение в этом браузере недоступно: результаты хранятся, пока открыта страница. Копируйте код ниже, чтобы не потерять данные.',true));
+
+  w.append(h('h2',null,'Правила турнира'));
+  var rl=h('div',{class:'rules'});
+  [['Партия','до '+CFG.pts+(CFG.deuce?', до разницы в 2 мяча':', без разницы в 2 мяча')],
+   ['Матч в группе',boLabel(CFG.bo)+(CFG.cycles===2?', два круга':', один круг')],
+   ['Очки в таблице','победа '+CFG.pw+', поражение '+CFG.pl],
+   ['Плей-офф',playoffText(CFG,N)+(CFG.po!=='none'&&CFG.ptsPo?', партия до '+CFG.ptsPo:'')]
+  ].forEach(function(r){rl.append(h('div',null,h('span',null,r[0]),h('b',null,r[1])))});
+  w.append(h('div',{class:'grp'},rl,h('div',{class:'hint',style:'margin-top:0'},'Партию, матч и круги после старта менять нельзя. Для этого начните новый турнир, имена и правила сохранятся.')));
+  w.append(h('h2',null,'Изменить сейчас'));
+  w.append(h('div',{class:'note'},'Очки в таблице и плей-офф можно менять в любой момент. Если плей-офф уже начат, он сбросится.'));
+  w.append(rulesPanel(CFG,'live',N,liveSet));
+
+  w.append(h('h2',null,'Имена игроков'));
+  var inputs=S.names.map(function(n,i){return h('input',{id:'rn'+i,class:'txt',type:'text',maxlength:'20',value:n,'aria-label':'Имя игрока '+(i+1)})});
+  var nl=h('div',{class:'names'});
+  inputs.forEach(function(i,idx){nl.append(h('div',{class:'nrow'},av(idx),i))});
+  w.append(nl);
+  var nerr=h('div',{class:'err'});
+  w.append(nerr);
+  w.append(h('div',{class:'btns'},h('button',{class:'btn',onclick:function(){
+    var names=inputs.map(function(el,i){return el.value.trim()||('Игрок '+(i+1))});
+    var low=names.map(function(x){return x.toLowerCase()});
+    if(low.some(function(x,i){return low.indexOf(x)!==i})){nerr.textContent='Имена должны отличаться';return}
+    S.names=names;save();render();
+  }},'Сохранить имена')));
+
+  w.append(h('h2',null,'Сохранить или перенести'));
+  w.append(h('div',{class:'note'},'Скопируйте код и сохраните его в заметках. Его можно вставить на другом телефоне или после сбоя, и турнир восстановится.'));
+  var code=h('textarea',{id:'code',readonly:'readonly','aria-label':'Код турнира'});code.value=encodeState();
+  var cok=h('div',{class:'ok-text'});
+  w.append(code,h('div',{class:'btns'},h('button',{class:'btn',onclick:function(){
+    code.value=encodeState();
+    var done=function(){cok.textContent='Скопировано'};
+    var manual=function(){cok.textContent='Нажмите на текст, выделите его и скопируйте вручную'};
+    var fallback=function(){
+      code.removeAttribute('readonly');code.focus();
+      try{code.select();code.setSelectionRange(0,code.value.length)}catch(e){}
+      var okc=false;try{okc=document.execCommand('copy')}catch(e){}
+      code.setAttribute('readonly','readonly');
+      if(okc)done();else manual();
+    };
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      try{navigator.clipboard.writeText(code.value).then(done,fallback)}catch(e){fallback()}
+    }else fallback();
+  }},'Скопировать код')),cok);
+
+  w.append(h('h2',null,'Восстановить из кода'));
+  var imp=h('textarea',{id:'imp',placeholder:'Вставьте код сюда','aria-label':'Код для восстановления'});
+  var ierr=h('div',{class:'err'});
+  w.append(imp,ierr,h('div',{class:'btns'},h('button',{class:'btn',onclick:function(){
+    var p;
+    try{p=decodeState(imp.value)}catch(e){ierr.textContent='Код не подходит. Скопируйте его целиком, начиная с «TTT»';return}
+    confirmBox('Текущий турнир на этом телефоне будет заменён. Продолжить?','Заменить',function(){
+      applyState(p);openState={};save();tab='tours';render();
+    });
+  }},'Восстановить')));
+
+  w.append(h('h2',null,'Новый турнир'));
+  w.append(h('div',{class:'btns'},h('button',{class:'btn danger',onclick:function(){
+    confirmBox('Удалить все результаты и начать новый турнир? Имена и правила сохранятся.','Удалить',function(){
+      draft.count=S.names.length;
+      draft.names=S.names.concat(['','','','','','','','','','','','']).slice(0,MAXP);
+      draft.cfg=clone(S.cfg);
+      S=null;openState={};save();render();
+    });
+  }},'Сбросить и начать заново')));
+  return w;
+}
+
+/* ---------- каркас ---------- */
+var ICONS={
+  tours:'<path d="M4 6h16M4 12h16M4 18h10"/>',
+  table:'<path d="M5 20V10M12 20V4M19 20v-7"/>',
+  final:TROPHY,
+  more:'<path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>'
+};
+function renderNav(){
+  var nav=document.getElementById('nav');
+  nav.textContent='';
+  if(!S){nav.style.display='none';return}
+  nav.style.display='flex';
+  var tabs=[['tours','Туры'],['table','Таблица'],['final',CFG.po==='none'?'Итог':'Плей-офф'],['more','Ещё']];
+  tabs.forEach(function(t){
+    var ic=h('span');ic.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+ICONS[t[0]]+'</svg>';
+    nav.append(h('button',{class:tab===t[0]?'on':'','aria-current':tab===t[0]?'page':null,onclick:function(){tab=t[0];render();window.scrollTo(0,0)}},ic,t[1]));
+  });
+}
+function render(){
+  var y=window.scrollY,app=document.getElementById('app');
+  var meta=document.getElementById('meta'),bar=document.getElementById('bar'),fill=document.getElementById('barfill');
+  app.textContent='';
+  if(!S){
+    app.append(viewSetup());meta.textContent='';bar.hidden=true;
+  }else{
+    var st=standings();
+    var played=SCHED.filter(function(m){return seriesOf(S.res[m.id],CFG.bo).done}).length;
+    var complete=played===TOTAL;
+    var need=complete?tieNeeds(st):[];
+    var X={st:st,played:played,complete:complete,need:need,plan:(complete&&!need.length)?planPlayoff(st,S.po):null};
+    app.append(tab==='tours'?viewTours(X):tab==='table'?viewTable(X):tab==='final'?viewPlayoff(X):viewMore());
+    meta.textContent=played+' из '+TOTAL+' матчей';
+    bar.hidden=false;fill.style.width=Math.round(100*played/TOTAL)+'%';
+  }
+  renderNav();
+  window.scrollTo(0,y);
+}
+render();
+})();
+</script>
+</body>
+</html>
